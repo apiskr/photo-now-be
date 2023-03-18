@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { QrcodeModule } from './qrcode/qrcode.module';
+import { DatabaseModule } from './database/database.module';
+import { ConfigurationModule } from './configuration/configuration.module';
 
 @Module({
-  imports: [QrcodeModule, ConfigModule.forRoot()],
+  imports: [QrcodeModule, ConfigurationModule, DatabaseModule],
 })
 export class AppModule {}
