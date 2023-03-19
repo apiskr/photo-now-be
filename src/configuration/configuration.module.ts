@@ -5,7 +5,7 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     ConfigModule.forRoot({
       envFilePath: `.env.${process.env.NODE_ENV}`,
-      isGlobal: true,
+      isGlobal: true, // 앱 전체에서 의존성 주입 코드 없이도 주입 가능
     }),
   ],
 })
