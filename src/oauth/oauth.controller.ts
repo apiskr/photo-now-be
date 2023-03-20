@@ -1,4 +1,5 @@
 import { Controller, Get, Inject } from '@nestjs/common';
+import { Redirect } from '@nestjs/common/decorators';
 import { OauthService } from './oauth.service';
 
 @Controller('oauth')
@@ -9,6 +10,7 @@ export class OauthController {
   ) {}
 
   @Get('/')
+  @Redirect()
   getAuthCodeFromKakao() {
     return this.oauthService.getAuthCodeFromKakao();
   }
