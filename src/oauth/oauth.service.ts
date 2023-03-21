@@ -6,10 +6,15 @@ import { ResGetAuthCode } from 'src/api/kakao';
 @Injectable()
 export class OauthService {
   constructor(private readonly configService: ConfigService) {}
-  // REDIRECT_URI 수정하기
+
   getAuthCodeFromKakao(): ResGetAuthCode {
     const KAKAO_API_KEY = this.configService.get<string>('KAKAO_API_KEY');
     const REDIRECT_URI = this.configService.get<string>('REDIRECT_URI');
     return kakao.getAuthCode(KAKAO_API_KEY, REDIRECT_URI);
+  }
+
+  redirectFromKakao(res) {
+    console.log(res);
+    return null;
   }
 }

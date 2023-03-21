@@ -1,6 +1,6 @@
 import axios from 'axios';
-const BASE_URL = 'https://kauth.kakao.com/';
-const ROUTE = 'oauth';
+const BASE_URL = 'https://kauth.kakao.com';
+const ROUTE = '/oauth';
 
 const kakaoInstance = axios.create({
   baseURL: BASE_URL,
@@ -17,4 +17,25 @@ const getAuthCode = (
   };
 };
 
-export const kakao = { getAuthCode };
+const postKakaoToken = async (
+  client_id: string,
+  redirect_uri: string,
+  code: string,
+) => {
+  return await kakaoInstance.post(
+    `${ROUTE}/token`,
+    {
+      grant_type: 'authorization_code',
+      client_id,
+      redirect_uri,
+      code,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+      },
+    },
+  );
+};
+
+export const kakao = { getAuthCode, postKakaoToken };
