@@ -4,5 +4,5 @@ import { IsNotEmpty } from 'class-validator';
 
 export class CreateQrcodeDto {
   @IsNotEmpty()
-  infoImage: any;
+  photo: any;
 }
