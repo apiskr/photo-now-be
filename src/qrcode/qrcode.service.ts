@@ -10,9 +10,13 @@ export class QrcodeService {
 
   public async createQrcode(id: string) {
     const QRCODE_API_KEY = this.configService.get<string>('QRCODE_API_KEY');
-    const res = await qrtiger.createStaticQrCode(QRCODE_API_KEY, id);
-    if (res.data.status === 403)
+    const resQrcodeUrl = await qrtiger.createStaticQrCode(QRCODE_API_KEY, id);
+    if (resQrcodeUrl.data.status === 403)
       throw new ForbiddenException('접근 권한이 없습니다.');
-    return res.data?.url; // qrcode를 저장해놓고 뿌리기? 아니면 바로 요청?
+
+    // const resQrcode = await axios.get(resQrcodeUrl.data.url);
+    // console.log(resQrcode);
+    // qrcode 데이터를 엔티티에 저장?
+    return resQrcodeUrl.data.url;
   }
 }
